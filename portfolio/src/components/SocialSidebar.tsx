@@ -27,7 +27,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {
@@ -62,7 +61,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {
@@ -96,7 +94,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {
@@ -130,7 +127,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {
@@ -166,7 +162,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {
@@ -201,7 +196,6 @@ export default function SocialSidebar() {
                     border: "1px solid rgba(255,255,255,0.05)",
                     boxShadow: "inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 0 rgba(0,0,0,0.8), 0 5px 8px rgba(0,0,0,0.5)",
                     color: "rgba(240,237,232,0.6)",
-                    cursor: "none",
                     transform: "translateY(0)"
                 }}
                 onMouseEnter={(e) => {

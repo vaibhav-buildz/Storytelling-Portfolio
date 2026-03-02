@@ -70,11 +70,11 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-[400] h-[64px] flex justify-between items-center px-[3.5vw] transition-all duration-400 ease-in-out ${scrolled
-                ? "bg-[#060608eb] backdrop-blur-[20px] backdrop-saturate-[1.8] border-b border-white/5"
+                ? "bg-[#06060880] backdrop-blur-[20px] backdrop-saturate-[1.8] border-b border-white/5"
                 : "bg-transparent border-b border-transparent"
                 }`}
             style={{
-                backgroundColor: scrolled ? "rgba(6,6,8,0.92)" : "transparent",
+                backgroundColor: scrolled ? "rgba(6,6,8,0.5)" : "transparent",
                 borderBottomColor: scrolled ? "rgba(255,255,255,0.06)" : "transparent"
             }}
         >
@@ -135,8 +135,7 @@ export default function Navbar() {
                         border: "1px solid rgba(255,255,255,0.15)",
                         padding: "0.6rem", // Square padding for icon
                         color: "rgba(240,237,232,0.6)",
-                        background: "transparent",
-                        cursor: "none"
+                        background: "transparent"
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.background = "#f0ede8";
@@ -167,8 +166,7 @@ export default function Navbar() {
                         border: "1px solid #ff5533",
                         padding: "0.5rem 1.2rem",
                         color: "#ff5533",
-                        background: "transparent",
-                        cursor: "none"
+                        background: "transparent"
                     }}
                     onMouseEnter={(e) => {
                         e.currentTarget.style.background = "#ff5533";

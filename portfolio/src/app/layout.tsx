@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-[#121212] text-white cursor-none md:cursor-none w-full`}>
+      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-[#121212] text-white w-full`}>
         <Cursor />
         <SocialSidebar />
         {children}

@@ -86,6 +86,7 @@ export default function Cursor() {
                     outer.current.y += (centerY - outer.current.y) * 0.15;
 
                     if (outerRef.current) {
+                        outerRef.current.style.opacity = "1";
                         outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
                         outerRef.current.style.width = `${targetWidth}px`;
                         outerRef.current.style.height = `${targetHeight}px`;
@@ -99,18 +100,13 @@ export default function Cursor() {
                     outer.current.y += (targetY - outer.current.y) * 0.08;
 
                     if (outerRef.current) {
+                        outerRef.current.style.opacity = "0"; // Hide when not hovering
                         outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
-                        outerRef.current.style.width = "32px";
-                        outerRef.current.style.height = "32px";
-                        outerRef.current.style.borderRadius = "50%"; // Circle shape
-                        outerRef.current.style.borderColor = "rgba(255,255,255,0.6)";
-                        outerRef.current.style.backgroundColor = "transparent";
                     }
                 }
 
                 if (innerRef.current) {
-                    innerRef.current.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%) scale(${inner.current.scale})`;
-                    innerRef.current.style.backgroundColor = isHovering.current ? "#3b82f6" : "#ffffff";
+                    innerRef.current.style.opacity = "0"; // Always hide inner dot
                 }
             }
 
