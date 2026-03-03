@@ -34,7 +34,7 @@ export default function Projects() {
                         className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-[#f2ede4] mb-4"
                         style={{ textShadow: "0 4px 24px rgba(242, 237, 228, 0.15)" }}
                     >
-                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]">
+                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]" style={{ paddingBottom: "0.15em", display: "inline-block" }}>
                             Featured
                         </span>
                         {" "}Creations.
