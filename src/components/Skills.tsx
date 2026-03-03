@@ -171,7 +171,7 @@ export default function Skills() {
                     className="mb-8 text-center md:text-left px-4 md:px-12"
                 >
                     <h3 className="text-4xl md:text-5xl font-sans font-medium text-[#f2ede4] mb-4">
-                        Neural <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#00ff88]">Network</span>
+                        Neural <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#00ff88]">Architecture</span>
                     </h3>
                     <p className="text-white/40 font-mono text-sm tracking-widest uppercase">
                         {`// Reactive expertise mapping system`}
