@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function About() {
     return (
@@ -28,27 +28,42 @@ export default function About() {
                             {/* Inner Glow Border */}
                             <div className="absolute inset-[-2px] bg-gradient-to-br from-[#ff5533] via-transparent to-[#00ff88] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
 
-                            {/* Main Cover Image */}
-                            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-[#0e0e12] [transform:translateZ(20px)]">
-                                <img
-                                    src="/profile-photo.jpeg"
-                                    alt="Background Cover"
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                />
-                                {/* Overlay to ensure text pops */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent opacity-80" />
+                            {/* Main Cover Image - 3D Depth & Pan Animation */}
+                            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/5 bg-[#0e0e12] [transform:translateZ(20px)] shadow-inner">
+                                <motion.div
+                                    className="absolute inset-[-10%] w-[120%] h-[120%]"
+                                    style={{
+                                        x: useTransform(useMotionValue(0), [-100, 100], [-20, 20]),
+                                        y: useTransform(useMotionValue(0), [-100, 100], [-20, 20]),
+                                    }}
+                                >
+                                    <img
+                                        src="/profile-photo.jpeg"
+                                        alt="Background Cover"
+                                        className="w-full h-full object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110 group-hover:rotate-1"
+                                    />
+                                </motion.div>
 
-                                {/* Geometric Highlights */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay shadow-[inset_0_0_100px_rgba(255,255,255,0.2)]" />
+                                {/* Dynamic Lighting Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#121212] via-[#121212]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-1000" />
+                                <div className="absolute inset-0 bg-gradient-to-bl from-[#ff5533]/20 via-transparent to-[#00ff88]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mix-blend-overlay" />
+
+                                {/* Glitch / Scanline FX on Hover */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay shadow-[inset_0_0_100px_rgba(255,255,255,0.15)] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
                             </div>
 
-                            {/* Center Circular Profile Picture - Hidden by default, revealed on hover */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [transform:translateZ(60px)] z-20 pointer-events-none transition-all duration-700 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-110 shadow-2xl rounded-full">
-                                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white/20 overflow-hidden bg-black/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.6)]">
+                            {/* Center Circular Profile Picture - Unique 3D Pop & Spin Animation */}
+                            <div className="absolute top-1/2 left-1/2 z-20 pointer-events-none transition-all duration-[900ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] opacity-0 [transform:translate(-50%,-50%)_translateZ(-50px)_scale(0.3)_rotate(-25deg)] group-hover:opacity-100 group-hover:[transform:translate(-50%,-50%)_translateZ(100px)_scale(1.05)_rotate(0deg)] rounded-full group-hover:shadow-[0_0_50px_rgba(0,255,136,0.4)]">
+
+                                {/* Orbiting Holographic Rings */}
+                                <div className="absolute inset-[-15px] rounded-full border border-dashed border-[#00ff88]/50 animate-[spin_10s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-200" />
+                                <div className="absolute inset-[-25px] rounded-full border border-dotted border-[#ff5533]/50 animate-[spin_15s_linear_infinite_reverse] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300" />
+
+                                <div className="relative w-28 h-28 md:w-[140px] md:h-[140px] rounded-full border-2 border-[#00ff88]/40 overflow-hidden bg-black/40 backdrop-blur-md flex items-center justify-center shadow-inner">
                                     <img
                                         src="/new-cover-photo.jpg"
                                         alt="Profile Picture"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
                                     />
                                 </div>
                             </div>
@@ -63,12 +78,18 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold font-cormorant leading-tight mb-8"
+                        className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-[#f2ede4] mb-8"
+                        style={{ textShadow: "0 4px 24px rgba(242, 237, 228, 0.15)" }}
                     >
-                        I break things <br />
-                        <span className="bg-gradient-to-r from-[#ff5533] to-[#00ff88] text-transparent bg-clip-text">
-                            to build them better.
+                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]" style={{ paddingBottom: "0.25em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
+                            Digital
                         </span>
+                        {" "}
+                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]" style={{ paddingBottom: "0.25em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
+                            Architect.
+                        </span>
+                        <br className="hidden md:block" />
+                        Offensive Security.
                     </motion.h2>
 
                     <motion.div
@@ -76,13 +97,13 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                        className="space-y-6 text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12"
+                        className="space-y-6 text-white/70 text-base md:text-lg lg:text-xl font-light leading-relaxed mb-12"
                     >
                         <p>
-                            I&apos;m Vaibhav Yadav, a full-stack developer and cybersecurity enthusiast from Greater Noida, India. I craft high-performance web apps while hunting vulnerabilities in the wild.
+                            I&apos;m Vaibhav Yadav, based in Greater Noida, India. I build immersive, high-performance web applications with a hacker&apos;s mindset. My journey bridges the gap between creative frontend development and deep-level system security.
                         </p>
                         <p>
-                            My dual identity as a creative developer and bug bounty hunter gives me a unique edge — I think like an attacker, build like an engineer, design like an artist.
+                            By day, I architect scalable platforms and fluid user interfaces. By night, I hunt for critical vulnerabilities, ensuring the digital infrastructure I interact with remains robust and impenetrable.
                         </p>
                     </motion.div>
 
@@ -92,23 +113,42 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                        className="space-y-4 font-mono text-sm md:text-base border-l border-white/10 ml-2 pl-6"
+                        className="space-y-6 font-mono text-sm md:text-base border-l border-white/10 ml-2 pl-6"
                     >
-                        <div className="relative">
+                        {/* 2023 */}
+                        <div className="relative block">
                             <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-[#ff5533] shadow-[0_0_10px_#ff5533]" />
-                            <span className="text-white/40 mr-4">2023</span> <span className="text-white/90">Started full-stack development</span>
+                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                                <span className="text-[#ff5533] font-bold">2023</span>
+                                <span className="text-white/90 font-medium text-base">Started the Engineering Journey</span>
+                            </div>
+                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
+                                Ignited my passion for software architecture, diving deep into computer science fundamentals. I laid the technical groundwork by understanding how digital systems operate under the hood.
+                            </p>
                         </div>
-                        <div className="relative">
+
+                        {/* 2024 */}
+                        <div className="relative block">
+                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-gradient-to-r from-[#ff5533] to-[#00ff88]" />
+                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                                <span className="bg-gradient-to-r from-[#ff5533] to-[#00ff88] text-transparent bg-clip-text font-bold">2024</span>
+                                <span className="text-white/90 font-medium text-base">Embraced Full-Stack Development</span>
+                            </div>
+                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
+                                Transitioned into building production-ready applications. I mastered modern web frameworks and crafted immersive user experiences wrapped around scalable backend architectures.
+                            </p>
+                        </div>
+
+                        {/* 2025 */}
+                        <div className="relative block">
                             <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-[#00ff88] shadow-[0_0_10px_#00ff88]" />
-                            <span className="text-white/40 mr-4">2024</span> <span className="text-white/90">Discovered bug bounty hunting</span>
-                        </div>
-                        <div className="relative">
-                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-[#00ff88] shadow-[0_0_10px_#00ff88]" />
-                            <span className="text-white/40 mr-4">2025</span> <span className="text-white/90">First vulnerability reports submitted</span>
-                        </div>
-                        <div className="relative">
-                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-white/20" />
-                            <span className="text-white/40 mr-4">2026</span> <span className="text-white/50">Building, breaking & growing</span>
+                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                                <span className="text-[#00ff88] font-bold">2025</span>
+                                <span className="text-white/90 font-medium text-base">Ventured into Cybersecurity</span>
+                            </div>
+                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
+                                Developed a hacker&apos;s mindset to uncover critical vulnerabilities. Leveraging my development background, I hunt for exploits and secure application perimeters from the inside out.
+                            </p>
                         </div>
                     </motion.div>
                 </div>
