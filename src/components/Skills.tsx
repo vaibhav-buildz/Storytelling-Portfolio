@@ -5,10 +5,12 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const skillsData = {
-    frontend: ["React", "Next.js", "TypeScript", "Tailwind", "Three.js"],
-    backend: ["Node.js", "Express", "Python", "MongoDB", "PostgreSQL"],
-    networking: ["TCP/IP", "DNS", "Linux", "Wireshark", "Cloudflare"],
-    offsec: ["Burp Suite", "Kali", "OWASP", "Nmap", "SQLi"]
+    frontend: ["React", "Next.js", "TypeScript", "Tailwind", "Three.js", "Framer"],
+    languages: ["JavaScript", "Python", "C++", "Java", "Go", "Bash"],
+    backend: ["Node.js", "Express", "Docker", "MongoDB", "PostgreSQL", "Redis"],
+    networking: ["TCP/IP", "DNS", "Linux", "Wireshark", "Cloudflare", "VPNs"],
+    bugbounty: ["Recon", "OWASP", "HackerOne", "Fuzzing", "PrivEsc", "Web Exploit"],
+    offsec: ["Burp Suite", "Kali", "Metasploit", "Nmap", "SQLi/XSS", "Malware"]
 };
 
 // SVG Paths connecting the neural nodes
@@ -16,22 +18,30 @@ const DesktopSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block">
         {/* Base Static Lines */}
         <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.2" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 15 L 25 45" />
-            <path d="M 50 15 L 75 45" />
-            <path d="M 25 45 L 12 75" />
-            <path d="M 25 45 L 38 75" />
-            <path d="M 75 45 L 62 75" />
-            <path d="M 75 45 L 88 75" />
+            <path d="M 50 10 L 25 35" />
+            <path d="M 50 10 L 75 35" />
+
+            <path d="M 25 35 L 10 65" />
+            <path d="M 25 35 L 25 75" />
+            <path d="M 25 35 L 40 65" />
+
+            <path d="M 75 35 L 60 65" />
+            <path d="M 75 35 L 75 75" />
+            <path d="M 75 35 L 90 65" />
         </g>
 
         {/* Animated Data Pulses */}
         <g className="synapse-flow" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 15 L 25 45" stroke="#ff5533" />
-            <path d="M 50 15 L 75 45" stroke="#00ff88" />
-            <path d="M 25 45 L 12 75" stroke="#ff5533" />
-            <path d="M 25 45 L 38 75" stroke="#ff5533" />
-            <path d="M 75 45 L 62 75" stroke="#00ff88" />
-            <path d="M 75 45 L 88 75" stroke="#00ff88" />
+            <path d="M 50 10 L 25 35" stroke="#ff5533" />
+            <path d="M 50 10 L 75 35" stroke="#00ff88" />
+
+            <path d="M 25 35 L 10 65" stroke="#ff5533" />
+            <path d="M 25 35 L 25 75" stroke="#ff5533" />
+            <path d="M 25 35 L 40 65" stroke="#ff5533" />
+
+            <path d="M 75 35 L 60 65" stroke="#00ff88" />
+            <path d="M 75 35 L 75 75" stroke="#00ff88" />
+            <path d="M 75 35 L 90 65" stroke="#00ff88" />
         </g>
     </svg>
 );
@@ -40,23 +50,30 @@ const MobileSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 md:hidden overflow-visible">
         {/* Base Static Lines */}
         <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 8 L 50 25" />
-            <path d="M 50 25 L 22 42" />
-            <path d="M 50 25 L 78 42" />
-            {/* Curved synapse routing around FullStack node */}
-            <path d="M 50 8 C 110 8, 110 62, 50 62" />
-            <path d="M 50 62 L 22 79" />
-            <path d="M 50 62 L 78 79" />
+            <path d="M 50 5 L 50 18" />
+            <path d="M 50 5 C 105 5, 105 55, 50 55" />
+
+            <path d="M 50 18 L 25 30" />
+            <path d="M 50 18 L 75 30" />
+            <path d="M 50 18 L 50 42" />
+
+            <path d="M 50 55 L 25 67" />
+            <path d="M 50 55 L 75 67" />
+            <path d="M 50 55 L 50 79" />
         </g>
 
         {/* Animated Data Pulses */}
         <g className="synapse-flow" strokeWidth="0.5" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 8 L 50 25" stroke="#ff5533" />
-            <path d="M 50 25 L 22 42" stroke="#ff5533" />
-            <path d="M 50 25 L 78 42" stroke="#ff5533" />
-            <path d="M 50 8 C 110 8, 110 62, 50 62" stroke="#00ff88" />
-            <path d="M 50 62 L 22 79" stroke="#00ff88" />
-            <path d="M 50 62 L 78 79" stroke="#00ff88" />
+            <path d="M 50 5 L 50 18" stroke="#ff5533" />
+            <path d="M 50 5 C 105 5, 105 55, 50 55" stroke="#00ff88" />
+
+            <path d="M 50 18 L 25 30" stroke="#ff5533" />
+            <path d="M 50 18 L 75 30" stroke="#ff5533" />
+            <path d="M 50 18 L 50 42" stroke="#ff5533" />
+
+            <path d="M 50 55 L 25 67" stroke="#00ff88" />
+            <path d="M 50 55 L 75 67" stroke="#00ff88" />
+            <path d="M 50 55 L 50 79" stroke="#00ff88" />
         </g>
     </svg>
 );
@@ -163,13 +180,13 @@ export default function Skills() {
             </div>
 
             {/* Neural Network Container */}
-            <div className="relative w-full h-[900px] md:h-[800px] max-w-6xl mx-auto mt-8 z-20">
+            <div className="relative w-full h-[1500px] md:h-[1000px] max-w-6xl mx-auto mt-8 z-20">
                 {/* Global Synapse Lines drawn via absolute SVG */}
                 <DesktopSynapses />
                 <MobileSynapses />
 
                 {/* 1. Core Brain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[8%] left-[50%] md:top-[15%] md:left-[50%]">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[5%] left-[50%] md:top-[10%] md:left-[50%]">
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-28 h-28 bg-purple-500/20 rounded-full blur-xl animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-6 py-3 bg-[#111] border border-purple-500/50 rounded-full shadow-[0_0_30px_rgba(168,85,247,0.4)] backdrop-blur-xl cursor-default">
@@ -179,7 +196,7 @@ export default function Skills() {
                 </div>
 
                 {/* 2. Full Stack Domain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[25%] left-[50%] md:top-[45%] md:left-[25%]">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[18%] left-[50%] md:top-[35%] md:left-[25%]">
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-20 h-20 bg-[#ff5533]/10 rounded-full blur-lg animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#ff5533] rounded-lg shadow-[0_0_20px_rgba(255,85,51,0.3)] cursor-default">
@@ -189,7 +206,7 @@ export default function Skills() {
                 </div>
 
                 {/* 3. Cybersecurity Domain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[62%] left-[50%] md:top-[45%] md:left-[75%]">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[55%] left-[50%] md:top-[35%] md:left-[75%]">
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-20 h-20 bg-[#00ff88]/10 rounded-full blur-lg animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#00ff88] rounded-lg shadow-[0_0_20px_rgba(0,255,136,0.3)] cursor-default">
@@ -198,36 +215,55 @@ export default function Skills() {
                     </div>
                 </div>
 
-                {/* 4. Terminal Sub Nodes containing Specific Technologies */}
+                {/* --- Terminal Sub Nodes containing Specific Technologies --- */}
+
+                {/* BRANCH: FULL STACK */}
                 <SubNode
                     label="Frontend"
                     techs={skillsData.frontend}
-                    mobileTop="top-[42%]" mobileLeft="left-[22%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[12%]"
+                    mobileTop="top-[30%]" mobileLeft="left-[25%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[10%]"
+                    borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
+                />
+
+                <SubNode
+                    label="Languages"
+                    techs={skillsData.languages}
+                    mobileTop="top-[30%]" mobileLeft="left-[75%]"
+                    desktopTop="md:top-[75%]" desktopLeft="md:left-[25%]"
                     borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
                 />
 
                 <SubNode
                     label="Backend"
                     techs={skillsData.backend}
-                    mobileTop="top-[42%]" mobileLeft="left-[78%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[38%]"
+                    mobileTop="top-[42%]" mobileLeft="left-[50%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[40%]"
                     borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
                 />
 
+                {/* BRANCH: CYBERSECURITY */}
                 <SubNode
                     label="Networking"
                     techs={skillsData.networking}
-                    mobileTop="top-[79%]" mobileLeft="left-[22%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[62%]"
+                    mobileTop="top-[67%]" mobileLeft="left-[25%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[60%]"
+                    borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
+                />
+
+                <SubNode
+                    label="Bug Bounty"
+                    techs={skillsData.bugbounty}
+                    mobileTop="top-[67%]" mobileLeft="left-[75%]"
+                    desktopTop="md:top-[75%]" desktopLeft="md:left-[75%]"
                     borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
                 />
 
                 <SubNode
                     label="OffSec"
                     techs={skillsData.offsec}
-                    mobileTop="top-[79%]" mobileLeft="left-[78%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[88%]"
+                    mobileTop="top-[79%]" mobileLeft="left-[50%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[90%]"
                     borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
                 />
             </div>
