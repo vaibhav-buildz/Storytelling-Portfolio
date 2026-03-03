@@ -1,40 +1,60 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export default function About() {
     return (
-        <section id="about" className="relative w-full min-h-screen bg-[#121212] py-24 md:py-32 px-6 md:px-16 lg:px-24 z-30 flex items-center">
-            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <section id="about" className="relative w-full min-h-screen bg-[#121212] py-24 md:py-32 px-6 md:px-16 lg:px-24 z-30 flex items-center overflow-hidden">
 
-                {/* LEFT: Portrait Card */}
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden bg-[#0e0e12] border border-white/5 shadow-2xl group"
-                >
-                    {/* Background gradient & SVG Grid */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#ff5533]/20 to-[#00ff88]/20 mix-blend-overlay z-0 transition-opacity duration-500 group-hover:opacity-75" />
-                    <div className="absolute inset-0 z-0 opacity-[0.06]" style={{ backgroundImage: "linear-gradient(#00ff88 1px, transparent 1px), linear-gradient(90deg, #00ff88 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+            {/* Ambient Background Glow for 3D effect */}
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#ff5533]/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#00ff88]/10 rounded-full blur-[120px] pointer-events-none" />
 
-                    {/* Center placeholder circle */}
-                    <div className="absolute inset-0 flex items-center justify-center z-10">
-                        <div className="w-40 h-40 rounded-full bg-gradient-to-tr from-[#ff5533] to-[#00ff88] flex items-center justify-center shadow-[0_0_50px_rgba(0,255,136,0.2)]">
-                            <span className="text-5xl font-bold font-cormorant text-white tracking-widest drop-shadow-md">VY</span>
-                        </div>
-                    </div>
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
 
-                    {/* Floating stat badges */}
-                    <div className="absolute bottom-6 left-0 w-full px-6 flex flex-wrap justify-center gap-2 z-20">
-                        {["∞ Curiosity", "10+ Projects", "2+ Bugs Reported", "∞ CVEs"].map((stat, i) => (
-                            <div key={i} className="px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-mono text-white/80">
-                                {stat}
+                {/* LEFT: 3D Portrait Card */}
+                <div className="relative w-full perspective-[1000px] flex items-center justify-center">
+                    <motion.div
+                        initial={{ opacity: 0, rotateX: 20, rotateY: -20, scale: 0.9 }}
+                        whileInView={{ opacity: 1, rotateX: 0, rotateY: 0, scale: 1 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                        className="relative w-full max-w-[450px] aspect-[3/4] rounded-2xl overflow-visible group"
+                    >
+                        {/* 3D Floating Layers Container */}
+                        <div className="relative w-full h-full transform-style-3d transition-transform duration-700 ease-out group-hover:[transform:rotateX(5deg)_rotateY(-5deg)] shadow-2xl rounded-2xl">
+
+                            {/* Inner Glow Border */}
+                            <div className="absolute inset-[-2px] bg-gradient-to-br from-[#ff5533] via-transparent to-[#00ff88] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
+
+                            {/* Main Cover Image */}
+                            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-[#0e0e12] [transform:translateZ(20px)]">
+                                <img
+                                    src="/profile-photo.jpeg"
+                                    alt="Background Cover"
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                />
+                                {/* Overlay to ensure text pops */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/40 to-transparent opacity-80" />
+
+                                {/* Geometric Highlights */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay shadow-[inset_0_0_100px_rgba(255,255,255,0.2)]" />
                             </div>
-                        ))}
-                    </div>
-                </motion.div>
+
+                            {/* Center Circular Profile Picture - Hidden by default, revealed on hover */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 [transform:translateZ(60px)] z-20 pointer-events-none transition-all duration-700 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-110 shadow-2xl rounded-full">
+                                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white/20 overflow-hidden bg-black/40 backdrop-blur-md flex items-center justify-center shadow-[0_0_40px_rgba(0,0,0,0.6)]">
+                                    <img
+                                        src="/new-cover-photo.jpg"
+                                        alt="Profile Picture"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
 
                 {/* RIGHT: Text Content */}
                 <div className="flex flex-col justify-center">
