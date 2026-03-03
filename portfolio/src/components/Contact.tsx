@@ -176,7 +176,7 @@ function EmailCard() {
 
 export default function Contact() {
     return (
-        <section id="contact" className="relative w-full py-32 bg-[#121212] z-30 overflow-hidden flex flex-col">
+        <section id="contact" className="relative w-full min-h-[100dvh] flex flex-col justify-center pt-32 pb-16 bg-[#121212] z-30">
 
             <div className="max-w-[85rem] mx-auto w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
 
@@ -186,81 +186,96 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="flex flex-col gap-16"
+                    className="flex flex-col gap-12"
                 >
                     {/* Header */}
-                    <div>
-                        <h2
-                            className="text-6xl md:text-7xl lg:text-8xl font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.05]"
-                            style={{
-                                textShadow: "0 4px 24px rgba(242, 237, 228, 0.15)"
-                            }}
-                        >
-                            Lets Work<br />Together.
+                    <div className="relative">
+                        {/* Decorative glow behind heading */}
+                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#ff5533] rounded-full blur-[100px] opacity-20 pointer-events-none" />
+
+                        <h2 className="text-5xl md:text-7xl lg:text-[5rem] font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.1] relative z-10">
+                            Lets Work <br />
+                            <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]">
+                                Together.
+                            </span>
                         </h2>
+                        <p className="text-white/40 font-mono text-sm mt-6 tracking-widest uppercase">
+                            {`// Drop me a line`}
+                        </p>
                     </div>
 
                     {/* Form */}
-                    <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-8 w-full max-w-xl">
                         {/* Row 1: Name & Email */}
-                        <div className="flex flex-col md:flex-row gap-10">
-                            <div className="relative w-full group">
+                        <div className="flex flex-col md:flex-row gap-8">
+                            {/* Name Input */}
+                            <div className="flex flex-col gap-3 w-full group">
+                                <label htmlFor="name" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
+                                    Name
+                                </label>
                                 <input
                                     type="text"
                                     id="name"
-                                    className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#f2ede4] transition-colors peer text-white text-sm"
-                                    placeholder=" "
+                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
+                                    placeholder="Aryan"
                                     autoComplete="off"
                                 />
-                                <label
-                                    htmlFor="name"
-                                    className="absolute left-0 top-0 text-white/50 transition-all peer-focus:-translate-y-5 peer-focus:text-[11px] peer-focus:text-[#f2ede4] peer-[:not(:placeholder-shown)]:-translate-y-5 peer-[:not(:placeholder-shown)]:text-[11px] pointer-events-none tracking-wide"
-                                >
-                                    Name *
-                                </label>
                             </div>
 
-                            <div className="relative w-full group">
+                            {/* Email Input */}
+                            <div className="flex flex-col gap-3 w-full group">
+                                <label htmlFor="email" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
+                                    Email
+                                </label>
                                 <input
                                     type="email"
                                     id="email"
-                                    className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#f2ede4] transition-colors peer text-white text-sm"
-                                    placeholder=" "
+                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
+                                    placeholder="aryan@gmail.com"
                                     autoComplete="off"
                                 />
-                                <label
-                                    htmlFor="email"
-                                    className="absolute left-0 top-0 text-white/50 transition-all peer-focus:-translate-y-5 peer-focus:text-[11px] peer-focus:text-[#f2ede4] peer-[:not(:placeholder-shown)]:-translate-y-5 peer-[:not(:placeholder-shown)]:text-[11px] pointer-events-none tracking-wide"
-                                >
-                                    Email *
-                                </label>
                             </div>
                         </div>
 
                         {/* Row 2: Work Details */}
-                        <div className="relative w-full group mt-4">
-                            <input
-                                type="text"
-                                id="details"
-                                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#f2ede4] transition-colors peer text-white text-sm"
-                                placeholder=" "
-                                autoComplete="off"
-                            />
-                            <label
-                                htmlFor="details"
-                                className="absolute left-0 top-0 text-white/50 transition-all peer-focus:-translate-y-5 peer-focus:text-[11px] peer-focus:text-[#f2ede4] peer-[:not(:placeholder-shown)]:-translate-y-5 peer-[:not(:placeholder-shown)]:text-[11px] pointer-events-none tracking-wide"
-                            >
+                        <div className="flex flex-col gap-3 w-full group">
+                            <label htmlFor="details" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
                                 Work Details
                             </label>
+                            <textarea
+                                id="details"
+                                rows={4}
+                                className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] resize-none"
+                                placeholder="Tell me about your project, timeline, and goals..."
+                            />
                         </div>
 
                         {/* Submit Button */}
                         <button
                             type="button"
-                            className="w-fit px-8 py-2.5 mt-8 border border-white/40 text-white rounded-full text-sm tracking-wide hover:bg-white hover:text-black transition-colors"
+                            className="group relative w-full md:w-fit mt-4 flex items-center justify-center"
                             data-hoverable="true"
                         >
-                            Submit
+                            {/* Animated Glow Wrapper */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#ff5533] to-[#ff8c00] rounded-full blur-md opacity-40 group-hover:opacity-70 group-hover:blur-lg transition-all duration-500" />
+
+                            {/* Inner Button Container */}
+                            <div className="relative flex items-center gap-4 px-8 py-4 bg-[#121212] border border-white/10 group-hover:border-white/20 rounded-full transition-all duration-300">
+                                <span className="text-white font-medium tracking-wide text-[15px] group-hover:text-[#ff5533] transition-colors">
+                                    Send Message
+                                </span>
+                                <svg
+                                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                    className="text-white group-hover:text-[#ff5533] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                                >
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </div>
                         </button>
                     </div>
                 </motion.div>
@@ -271,7 +286,7 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                    className="flex flex-col gap-12 lg:pt-32"
+                    className="flex flex-col gap-12"
                 >
                     {/* Bio / Intro text - matching the right top paragraph in reference */}
                     <div className="max-w-md">
@@ -335,9 +350,9 @@ export default function Contact() {
                         <div className="mt-4">
                             <span className="text-[11px] font-sans text-white/40 mb-4 block tracking-wide">Social Links</span>
                             <div className="flex items-center gap-4">
-                                <SocialIcon href="https://github.com/itzvaibhav1" icon="github" />
-                                <SocialIcon href="https://linkedin.com/in/vaibhav-yadav-0027" icon="linkedin" />
-                                <SocialIcon href="https://x.com/itzvaibhav_" icon="twitter" />
+                                <SocialIcon href="https://www.github.com/vansh9793693385-source" icon="github" />
+                                <SocialIcon href="https://www.linkedin.com/in/vaibhav-yadav-80b891330" icon="linkedin" />
+                                <SocialIcon href="https://twitter.com/vanshh_00" icon="twitter" />
                             </div>
                         </div>
                     </div>

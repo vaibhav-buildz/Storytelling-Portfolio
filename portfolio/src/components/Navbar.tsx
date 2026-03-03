@@ -7,7 +7,6 @@ const NAV_LINKS = [
     { label: "Skills", id: "skills", color: "#b54dff", glow: "rgba(181,77,255,0.5)", origin: "center", hoverTransform: "scale(1.15) translateY(-2px)" },
     { label: "Work", id: "projects", color: "#4dff88", glow: "rgba(77,255,136,0.5)", origin: "right", hoverTransform: "scale(1.1) translateX(-2px)" },
     { label: "Certs", id: "certs", color: "#ffcb4d", glow: "rgba(255,203,77,0.5)", origin: "left", hoverTransform: "scale(1.15) skewX(-8deg)" },
-    { label: "Feedback", id: "testimonials", color: "#ff4d88", glow: "rgba(255,77,136,0.5)", origin: "center", hoverTransform: "scale(1.1) rotate(2deg)" },
     { label: "Contact", id: "contact", color: "#ff5533", glow: "rgba(255,85,51,0.5)", origin: "right", hoverTransform: "scale(1.15) translateY(-1px)" }
 ];
 
