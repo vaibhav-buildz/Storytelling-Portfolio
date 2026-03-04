@@ -182,6 +182,24 @@ export default function About() {
                                     </p>
                                 </div>
                             </div>
+                            {/* 2026 Block */}
+                            <div className="relative group perspective-[800px]">
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-[#ff0055]/50 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-[#ff0055]/20 group-hover:scale-125 group-hover:border-[#ff0055] group-hover:shadow-[0_0_15px_rgba(255,0,85,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff0055]" />
+                                </div>
+
+                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#ff0055]/40 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#ff0055]/10 to-transparent rounded-xl pointer-events-none" />
+
+                                    <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
+                                        <span className="text-[#ff0055] font-bold font-mono tracking-wider tabular-nums text-lg drop-shadow-[0_0_8px_rgba(255,0,85,0.5)] group-hover:scale-110 transition-transform origin-left">2026</span>
+                                        <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Initiated Bug Bounty Hunting</span>
+                                    </div>
+                                    <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 relative z-10">
+                                        Taking offensive security to the next level. Actively hunting for zero-days and vulnerabilities across various platforms, turning my cybersecurity knowledge into actionable defense mechanisms in the wild.
+                                    </p>
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
 
