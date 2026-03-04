@@ -78,7 +78,7 @@ export default function Certifications() {
                     100% { transform: translateX(-50%); }
                 }
                 .animate-marquee {
-                    animation: marquee 40s linear infinite;
+                    animation: marquee 25s linear infinite;
                 }
                 .animate-marquee:hover {
                     animation-play-state: paused;
