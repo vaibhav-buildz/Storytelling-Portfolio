@@ -83,6 +83,11 @@ export default function Certifications() {
                 .animate-marquee {
                     animation: marquee 25s linear infinite;
                 }
+                @media (max-width: 768px) {
+                    .animate-marquee {
+                        animation: marquee 15s linear infinite;
+                    }
+                }
                 @keyframes scan {
                     0% { transform: translateX(-100%); }
                     50% { transform: translateX(100%); }
