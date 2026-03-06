@@ -76,8 +76,19 @@ interface DisplayCardsProps {
 }
 
 export default function DisplayCards({ cards }: DisplayCardsProps) {
-    // Import useState from React at the top implicitly if not present, but better to be safe
     const [selectedIdx, setSelectedIdx] = React.useState<number | null>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    // Reset selection whenever user taps/clicks outside the card stack
+    React.useEffect(() => {
+        const handleClickOutside = (e: PointerEvent) => {
+            if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+                setSelectedIdx(null);
+            }
+        };
+        document.addEventListener("pointerdown", handleClickOutside);
+        return () => document.removeEventListener("pointerdown", handleClickOutside);
+    }, []);
 
     const defaultCards = [
         {
@@ -94,7 +105,7 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
     const displayCards = cards || defaultCards;
 
     return (
-        <div className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
+        <div ref={containerRef} className="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
             {displayCards.map((cardProps, index) => (
                 <DisplayCard
                     key={index}
