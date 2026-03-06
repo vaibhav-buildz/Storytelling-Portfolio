@@ -27,29 +27,39 @@ export default function ScrollyCanvas() {
             setShowBootSequence(false);
         }
 
+        const isMobile = window.innerWidth < 768;
+        // On mobile, load every 3rd frame to cut RAM usage by 66% (32 frames total instead of 94)
+        const step = isMobile ? 3 : 1;
+
         let loadedCount = 0;
         const images: HTMLImageElement[] = [];
+        const totalFramesToLoad = Math.ceil(FRAME_COUNT / step);
+        // Only block the UI for the first 10 frames to instantly fix "Opens Late"
+        const unlockThreshold = Math.min(10, totalFramesToLoad);
 
-        for (let i = 0; i < FRAME_COUNT; i++) {
+        for (let i = 0; i < FRAME_COUNT; i += step) {
             const img = new Image();
             const paddedIndex = i.toString().padStart(3, "0");
             img.src = `/sequence/frame_${paddedIndex}_delay-0.05s.webp`;
 
             img.onload = () => {
                 loadedCount++;
-                // Calculate percentage
-                const progress = Math.round((loadedCount / FRAME_COUNT) * 100);
-                setLoadProgress(progress);
 
-                if (loadedCount === FRAME_COUNT) {
-                    imagesRef.current = images;
-                    // Add a slight delay before hiding the loading screen 
-                    // so the user actually sees it reach 100%
-                    setTimeout(() => setImagesLoaded(true), 400);
+                // Scale the visual UI progress bar to hit 100% when the threshold is reached
+                if (loadedCount <= unlockThreshold) {
+                    const visualProgress = Math.round((loadedCount / unlockThreshold) * 100);
+                    setLoadProgress(visualProgress);
+                }
+
+                // Unlock the loading screen instantly when we hit our conservative threshold
+                if (loadedCount === unlockThreshold) {
+                    setTimeout(() => setImagesLoaded(true), 150);
                 }
             };
             images.push(img);
         }
+
+        imagesRef.current = images;
     }, []);
 
     // 2. We still need useScroll for the Overlay component which relies on Framer Motion Y-progress
@@ -83,9 +93,10 @@ export default function ScrollyCanvas() {
             // Clamp progress between 0 and 1
             progress = Math.max(0, Math.min(1, progress));
 
-            // Calculate index
-            const rawIndex = Math.floor(progress * (FRAME_COUNT - 1));
-            const frameIndex = Math.max(0, Math.min(FRAME_COUNT - 1, rawIndex));
+            // Calculate index dynamically based on loaded array length (adaptive to mobile decimation)
+            const maxFrame = Math.max(0, imagesRef.current.length - 1);
+            const rawIndex = Math.floor(progress * maxFrame);
+            const frameIndex = Math.max(0, Math.min(maxFrame, rawIndex));
 
             currentFrameRef.current = frameIndex;
 
@@ -113,7 +124,8 @@ export default function ScrollyCanvas() {
         if (!context) return;
 
         const img = imagesRef.current[currentFrameRef.current];
-        if (!img) return;
+        // If the user scrolls faster than background loading, quietly drop the frame render until ready
+        if (!img || !img.complete || img.naturalWidth === 0) return;
 
         // Ensure canvas sizing is correct but explicitly CAP the device pixel ratio to 1.5x
         // This stops iPhones (3x DPR) from crashing the GPU trying to render 4K textures at 60fps
