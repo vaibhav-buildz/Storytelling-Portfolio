@@ -26,7 +26,7 @@ export default function Certifications() {
         {
             icon: <Shield className="size-4 text-[#ffcb4d]" />,
             title: "Ethical Hacking",
-            description: "Offensive Cybersecurity",
+            description: "A hands-on course covering ethical hacking methodologies, penetration testing techniques, vulnerability assessment, web application security, and real-world offensive security practices.",
             date: "2025",
             iconClassName: "text-[#ffcb4d]",
             titleClassName: "text-[#ffcb4d] font-mono",
