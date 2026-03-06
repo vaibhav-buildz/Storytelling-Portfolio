@@ -15,7 +15,7 @@ export default function Home() {
       </section>
       <About />
       <Skills />
-      <section id="projects" className="w-full">
+      <section id="featured-creations" className="w-full">
         <Projects />
       </section>
       <Certifications />

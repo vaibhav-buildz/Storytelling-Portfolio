@@ -137,6 +137,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                     opacity: 0;
                     transition: opacity 0.3s;
                     pointer-events: none;
+                    visibility: hidden; /* Hide screen reader duplication */
                 }
                 .glitch-text.is-active::before {
                     color: #00bfff;
@@ -169,14 +170,14 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
             >
                 {/* Base Layer with Pseudo Elements for Glitch */}
                 <h1
-                    data-text={title}
+                    data-text={scrambledTitle}
                     className={cn(
                         "glitch-text relative text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-white transition-all duration-500 ease-out text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
                         // Dynamic text shadow glows on hover
                         isActive ? "is-active scale-[1.02] drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-[#ffffff]" : "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] text-[#f2ede4]"
                     )}
                 >
-                    {scrambledTitle}
+                    <span aria-hidden="false">{scrambledTitle}</span>
                 </h1>
 
                 {/* Scanline Effect when hovered */}

@@ -215,6 +215,7 @@ export default function About() {
                                 description="Taking offensive security to the next level. Actively hunting for zero-days and vulnerabilities across various platforms, turning my cybersecurity knowledge into actionable defense mechanisms in the wild."
                                 color="[#ff0055]"
                                 isMobile={isMobile}
+                                inProgress
                             />
                         </motion.div>
                     </div>
@@ -226,7 +227,7 @@ export default function About() {
 }
 
 // Extracted TimelineBlock component to manage its own IntersectionObserver
-function TimelineBlock({ year, title, description, color, isMobile }: { year: string, title: string, description: string, color: string, isMobile: boolean }) {
+function TimelineBlock({ year, title, description, color, isMobile, inProgress = false }: { year: string, title: string, description: string, color: string, isMobile: boolean, inProgress?: boolean }) {
     const ref = useRef<HTMLDivElement>(null);
     const [isInView, setIsInView] = useState(false);
 
@@ -307,7 +308,7 @@ function TimelineBlock({ year, title, description, color, isMobile }: { year: st
                 !isMobile && `group-hover:scale-125 ${getBgColorHover().split(' ')[0]} ${getBorderHover().split(' ')[0]} ${getShadowHover().split(' ')[0]}`,
                 isActive && `scale-125 ${getBgColorHover().split(' ')[1]} ${getBorderHover().split(' ')[1]} ${getShadowHover().split(' ')[1]}`
             )}>
-                <div className={cn("w-1.5 h-1.5 md:w-2 md:h-2 rounded-full", getDotColor())} />
+                <div className={cn("w-1.5 h-1.5 md:w-2 md:h-2 rounded-full", getDotColor(), inProgress && "animate-pulse shadow-[0_0_10px_currentColor]")} />
             </div>
 
             {/* 3D Card Content */}
@@ -323,14 +324,22 @@ function TimelineBlock({ year, title, description, color, isMobile }: { year: st
                 )} />
 
                 <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
-                    <span className={cn("font-bold font-mono tracking-wider tabular-nums text-lg transition-transform origin-left",
-                        getYearColor(),
-                        !isMobile && "group-hover:scale-110",
-                        isActive && "scale-110"
-                    )}>
-                        {year}
-                    </span>
-                    <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-sm sm:text-sm">{title}</span>
+                    <div className="flex items-center gap-3">
+                        <span className={cn("font-bold font-mono tracking-wider tabular-nums text-lg transition-transform origin-left",
+                            getYearColor(),
+                            !isMobile && "group-hover:scale-110",
+                            isActive && "scale-110"
+                        )}>
+                            {year}
+                        </span>
+                        {inProgress && (
+                            <span className="text-[9px] font-mono tracking-widest text-[#ff0055] uppercase border border-[#ff0055]/30 bg-[#ff0055]/10 px-2 py-0.5 rounded-full flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#ff0055] animate-pulse" />
+                                Present
+                            </span>
+                        )}
+                    </div>
+                    <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-sm sm:text-sm mt-1 sm:mt-0">{title}</span>
                 </div>
                 <p className="text-white/50 text-sm sm:text-sm font-sans leading-relaxed mt-2 relative z-10">
                     {description}

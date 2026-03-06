@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 const NAV_LINKS = [
     { label: "About", id: "about", color: "#00bfff", glow: "rgba(0,191,255,0.5)", origin: "bottom", hoverTransform: "scale(1.1) translateY(-2px)" },
     { label: "Skills", id: "skills", color: "#00ff88", glow: "rgba(0,255,136,0.5)", origin: "left", hoverTransform: "scale(1.1) rotate(-2deg)" },
-    { label: "Work", id: "projects", color: "#4dff88", glow: "rgba(77,255,136,0.5)", origin: "right", hoverTransform: "scale(1.1) translateX(-2px)" },
+    { label: "Work", id: "featured-creations", color: "#4dff88", glow: "rgba(77,255,136,0.5)", origin: "right", hoverTransform: "scale(1.1) translateX(-2px)" },
     { label: "Certs", id: "certs", color: "#ffcb4d", glow: "rgba(255,203,77,0.5)", origin: "left", hoverTransform: "scale(1.15) skewX(-8deg)" },
     { label: "Contact", id: "contact", color: "#00bfff", glow: "rgba(0,191,255,0.5)", origin: "right", hoverTransform: "scale(1.15) translateY(-1px)" }
 ];

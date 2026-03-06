@@ -266,14 +266,14 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        {/* Row 2: Work Details */}
+                        {/* Row 2: Message */}
                         <div className="flex flex-col gap-3 w-full group">
-                            <label htmlFor="details" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#00bfff] transition-colors flex items-center gap-2">
+                            <label htmlFor="message" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#00bfff] transition-colors flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#00bfff] transition-colors" />
-                                Work Details
+                                Message
                             </label>
                             <textarea
-                                id="details"
+                                id="message"
                                 rows={4}
                                 className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] resize-none"
                                 placeholder="Tell me about your project, timeline, and goals..."
@@ -408,6 +408,15 @@ export default function Contact() {
                 </motion.div>
 
             </div>
+
+            {/* Copyright Footer */}
+            <div className="absolute bottom-0 w-full pt-8 pb-8 flex flex-col items-center justify-center border-t border-white/5 mt-20">
+                <p className="text-white/40 text-[11px] font-mono tracking-widest uppercase">
+                    © 2026 Vaibhav Yadav. All rights reserved.
+                </p>
+                <div className="w-1/3 max-w-md h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mt-4 hidden sm:block"></div>
+            </div>
+
         </section>
     );
 }
