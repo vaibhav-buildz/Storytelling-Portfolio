@@ -31,19 +31,19 @@ export async function POST(req: Request) {
         submissionCounts.set(email.toLowerCase(), currentCount + 1);
 
         // 4. Configure Nodemailer Transporter
-        // Requires GMAIL_USER (your exact email vy9793693385@gmail.com) and GMAIL_APP_PASSWORD in production environment variables.
+        // Requires GMAIL_USER (your exact email vansh9793693385@gmail.com) and GMAIL_APP_PASSWORD in production environment variables.
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.GMAIL_USER || 'vy9793693385@gmail.com', // Authenticated sender
+                user: process.env.GMAIL_USER || 'vansh9793693385@gmail.com', // Authenticated sender
                 pass: process.env.GMAIL_APP_PASSWORD, // 16-character google app password
             },
         });
 
         // Setup the secure payload configuration
         const mailOptions = {
-            from: process.env.GMAIL_USER || 'vy9793693385@gmail.com',
-            to: 'vy9793693385@gmail.com', // Hardcoded destination
+            from: process.env.GMAIL_USER || 'vansh9793693385@gmail.com',
+            to: 'vansh9793693385@gmail.com', // Hardcoded destination
             replyTo: email, // Maps replies safely to the actual user
             subject: `New Portfolio Message from ${name}`,
             text: `You have received a new message from your portfolio contact form.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
