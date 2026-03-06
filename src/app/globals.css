@@ -17,6 +17,17 @@ body {
   overflow-x: hidden;
 }
 
+* {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

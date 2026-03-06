@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 // --- SVG Icons ---
 const icons = {
@@ -66,6 +66,13 @@ function EmailCard() {
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
     const [gloss, setGloss] = useState({ x: 50, y: 50 });
     const [hovered, setHovered] = useState(false);
+    const [email, setEmail] = useState("Loading...");
+
+    // Obfuscate email reconstruction at validation/runtime to prevent scraping
+    useEffect(() => {
+        const parts = ["itz", "vaibhav", "@", "gmail", ".com"];
+        setEmail(parts.join(""));
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const card = cardRef.current;
@@ -105,7 +112,7 @@ function EmailCard() {
                     onMouseMove={handleMouseMove}
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => { window.location.href = "mailto:itzvaibhav@gmail.com"; }}
+                    onClick={() => { if (email !== "Loading...") window.location.href = `mailto:${email}`; }}
                     className="relative rounded-2xl overflow-hidden cursor-pointer"
                     style={{
                         height: "136px",
@@ -160,7 +167,7 @@ function EmailCard() {
                                     transition: "color 0.3s, text-shadow 0.3s, transform 0.3s",
                                 }}
                             >
-                                itzvaibhav@gmail.com
+                                {email}
                             </p>
                             <div className="flex items-center gap-2 mt-2">
                                 <span
