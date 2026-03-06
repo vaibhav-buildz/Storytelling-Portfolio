@@ -83,13 +83,13 @@ export default function Navbar() {
         >
             {/* ━━━━━━━━━━━━━━━━━━ LEFT — Badge ━━━━━━━━━━━━━━━━━━ */}
             <div className="flex items-center">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00bfff]/30 bg-[#00bfff]/10 backdrop-blur-md">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00ff88]/30 bg-[#00ff88]/10 backdrop-blur-md">
                     <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00bfff] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00bfff]"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff88] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ff88]"></span>
                     </span>
-                    <span className="text-[10px] sm:text-xs font-mono text-[#00bfff] uppercase tracking-wider hidden sm:block">Open to Work</span>
-                    <span className="text-[10px] font-mono text-[#00bfff] uppercase tracking-wider sm:hidden">Available</span>
+                    <span className="text-[10px] sm:text-xs font-mono text-[#00ff88] uppercase tracking-wider hidden sm:block">Open to Work</span>
+                    <span className="text-[10px] font-mono text-[#00ff88] uppercase tracking-wider sm:hidden">Available</span>
                 </div>
             </div>
 
