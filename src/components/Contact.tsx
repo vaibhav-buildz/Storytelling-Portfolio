@@ -189,17 +189,55 @@ function EmailCard() {
 export default function Contact() {
     const [submitting, setSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleSubmit = () => {
+    // Form states
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({ ...prev, [id]: value }));
+    };
+
+    const handleSubmit = async () => {
         setSubmitting(true);
         setSubmitStatus("idle");
-        // Simulate network request
-        setTimeout(() => {
-            setSubmitting(false);
+        setErrorMessage("");
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || "Failed to send message.");
+            }
+
             setSubmitStatus("success");
-            // Clear status after 5 seconds to allow sending another message
+            setFormData({ name: "", email: "", message: "" }); // Reset form
+
+            // Clear status after 5 seconds
             setTimeout(() => setSubmitStatus("idle"), 5000);
-        }, 1500);
+        } catch (error: unknown) {
+            setSubmitStatus("error");
+            if (error instanceof Error) {
+                setErrorMessage(error.message);
+            } else {
+                setErrorMessage("An unexpected error occurred.");
+            }
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -244,6 +282,8 @@ export default function Contact() {
                                 <input
                                     type="text"
                                     id="name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
                                     className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
                                     placeholder="Aryan"
                                     autoComplete="off"
@@ -259,6 +299,8 @@ export default function Contact() {
                                 <input
                                     type="email"
                                     id="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
                                     className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
                                     placeholder="aryan@gmail.com"
                                     autoComplete="off"
@@ -275,6 +317,8 @@ export default function Contact() {
                             <textarea
                                 id="message"
                                 rows={4}
+                                value={formData.message}
+                                onChange={handleInputChange}
                                 className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] resize-none"
                                 placeholder="Tell me about your project, timeline, and goals..."
                             />
@@ -317,12 +361,12 @@ export default function Contact() {
                         {/* Feedback Messages */}
                         {submitStatus === "success" && (
                             <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[#00ff88] text-sm mt-2">
-                                Message sent! I&apos;ll get back to you soon.
+                                Message sent successfully! I&apos;ll get back to you soon.
                             </motion.p>
                         )}
                         {submitStatus === "error" && (
                             <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[#ff0055] text-sm mt-2">
-                                Error sending message. Please try again.
+                                {errorMessage || "Error sending message. Please try again."}
                             </motion.p>
                         )}
                     </div>
