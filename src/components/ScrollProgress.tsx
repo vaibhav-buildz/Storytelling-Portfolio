@@ -1,57 +1,35 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { motion, useScroll, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 
 export default function ScrollProgress() {
     const { scrollYProgress } = useScroll();
 
-    // Spring physics make the scroll bar feel incredibly smooth and native
+    // Spring physics make the scroll numbers transition beautifully smoothly
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
         restDelta: 0.001
     });
 
-    // Animate the SVG stroke dash array offset to act as a radial progress ring
-    // 100 is the circumference (empty), 0 is completely full.
-    const pathLength = useTransform(smoothProgress, [0, 1], [0, 1]);
+    // Map progress exactly to a percentage integer string for the visual text
+    const percentage = useTransform(smoothProgress, [0, 1], [0, 100]);
+    const displayPercentage = useTransform(percentage, (latest: number) => {
+        // Pad with a zero if it's single digits for typographic consistency (e.g., 04%)
+        const num = Math.round(latest);
+        return num < 10 ? `0${num}%` : `${num}%`;
+    });
+
+    // We must use a motion template to safely render a MotionValue string into a React child node
+    const textTemplate = useMotionTemplate`SCROLL — ${displayPercentage}`;
 
     return (
-        <div className="fixed bottom-6 right-6 z-[100] flex items-center justify-center mix-blend-difference">
-            {/* The SVG Container */}
-            <svg
-                width="48"
-                height="48"
-                viewBox="0 0 100 100"
-                className="-rotate-90 drop-shadow-[0_0_8px_rgba(0,255,136,0.3)]"
+        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] hidden md:flex items-center justify-center mix-blend-difference pointer-events-none">
+            <motion.div
+                className="font-mono text-[11px] text-[#00ff88]/50 font-medium tracking-[0.3em] uppercase rotate-90 origin-center whitespace-nowrap"
             >
-                {/* Background Ring */}
-                <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    className="stroke-white/10"
-                    strokeWidth="6"
-                />
-                {/* Animated Glowing Foreground Ring */}
-                <motion.circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    className="stroke-[#00ff88]"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                    style={{ pathLength }}
-                />
-            </svg>
-
-            {/* Inner Icon / Arrow */}
-            <div className="absolute inset-0 flex items-center justify-center text-[#00ff88]/50">
-                <ArrowDown size={14} className="animate-pulse" />
-            </div>
+                {textTemplate}
+            </motion.div>
         </div>
     );
 }
