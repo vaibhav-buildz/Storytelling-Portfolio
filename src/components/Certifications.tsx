@@ -23,7 +23,7 @@ export default function Certifications() {
             iconClassName: "text-[#00ff88]",
             titleClassName: "text-[#00ff88] font-mono",
             className:
-                "[grid-area:stack] translate-x-6 translate-y-6 md:translate-x-12 md:translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/80 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center overflow-hidden",
+                "[grid-area:stack] translate-x-10 translate-y-10 md:translate-x-16 md:translate-y-16 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/80 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center overflow-hidden",
         },
         {
             icon: <Shield className="size-4 text-[#ffcb4d]" />,
@@ -34,7 +34,7 @@ export default function Certifications() {
             iconClassName: "text-[#ffcb4d]",
             titleClassName: "text-[#ffcb4d] font-mono",
             className:
-                "[grid-area:stack] translate-x-12 translate-y-12 md:translate-x-24 md:translate-y-20 hover:translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/80 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center overflow-hidden",
+                "[grid-area:stack] translate-x-20 translate-y-20 md:translate-x-32 md:translate-y-32 hover:translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/80 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center overflow-hidden",
         },
     ];
 
