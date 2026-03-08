@@ -1,7 +1,16 @@
+"use client";
+
 import React from "react";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
+    {
+        title: "Vaibhav.Portfolio",
+        description: "A cinematic, scroll-reactive 3D portfolio with a custom image sequence engine, immersive boot animations, and interactive particle systems — built entirely from scratch.",
+        tags: ["Next.js", "Three.js", "Framer Motion", "Canvas API"],
+        link: "https://vaibhavyadav.com",
+        github: "https://github.com/vansh9793693385-source/New-Portfolio",
+    },
     {
         title: "MIND.EXE",
         description: "Cinematic portfolio experience built with Canvas and fine-tuned interactions.",

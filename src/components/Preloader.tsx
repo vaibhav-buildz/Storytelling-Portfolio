@@ -4,9 +4,13 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Preloader() {
+    const [mounted, setMounted] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Mark as mounted first to prevent hydration mismatch
+        setMounted(true);
+
         // Only run on the client side
         const hasPlayed = sessionStorage.getItem("preloaderPlayed");
 
@@ -23,8 +27,8 @@ export default function Preloader() {
         }
     }, []);
 
-    // After animation completely finishes, unmount to save DOM memory
-    if (!loading) return null;
+    // Don't render anything until mounted (prevents server/client HTML mismatch)
+    if (!mounted || !loading) return null;
 
     return (
         <motion.div

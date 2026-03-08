@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-[#121212] text-white w-full`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-[#121212] text-white w-full`} suppressHydrationWarning>
         <Preloader />
         <ScrollProgress />
         <BackToTop />

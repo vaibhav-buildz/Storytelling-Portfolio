@@ -13,7 +13,8 @@ export default function ScrollyCanvas() {
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [loadProgress, setLoadProgress] = useState(0);
-    const [showBootSequence, setShowBootSequence] = useState(true);
+    // Start false (server-safe) — useEffect will set true on first-ever visit
+    const [showBootSequence, setShowBootSequence] = useState(false);
 
     // Track frame index manually
     const currentFrameRef = useRef(0);
@@ -21,11 +22,13 @@ export default function ScrollyCanvas() {
 
     // 1. Initial Mount Check for BootSequence & Preloading
     useEffect(() => {
-        // Check session storage FIRST to bypass glitch text immediately
+        // Check session storage to decide whether to show the boot sequence
         const hasBooted = sessionStorage.getItem("bootSequencePlayed");
-        if (hasBooted) {
-            setShowBootSequence(false);
+        if (!hasBooted) {
+            // First visit — show the boot animation
+            setShowBootSequence(true);
         }
+        // If already booted, stays false (skips boot sequence)
 
         const isMobile = window.innerWidth < 768;
         // On mobile, load every 3rd frame to cut RAM usage by 66% (32 frames total instead of 94)
