@@ -5,32 +5,13 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
     {
-        title: "Vaibhav.Portfolio",
+        title: "Storytelling Portfolio",
         description: "A cinematic, scroll-reactive 3D portfolio with a custom image sequence engine, immersive boot animations, and interactive particle systems — built entirely from scratch.",
         tags: ["Next.js", "Three.js", "Framer Motion", "Canvas API"],
         link: "https://my-storytelling-portfolio.vercel.app/",
         github: "https://github.com/vansh9793693385-source/New-Portfolio",
+        image: "/project-storytelling-portfolio.png",
     },
-    {
-        title: "MIND.EXE",
-        description: "Cinematic portfolio experience built with Canvas and fine-tuned interactions.",
-        tags: ["Next.js", "Canvas", "Framer Motion"],
-    },
-    {
-        title: "Spatial UI",
-        description: "Experimental glassmorphic interface inspired by spatial computing.",
-        tags: ["React", "Three.js", "Tailwind"],
-    },
-    {
-        title: "Dark Matter System",
-        description: "A dark-mode-first component library for modern web apps.",
-        tags: ["TypeScript", "CSS", "Storybook"],
-    },
-    {
-        title: "Aura Commerce",
-        description: "High-performance headless e-commerce storefront.",
-        tags: ["Next.js", "Shopify", "GraphQL"],
-    }
 ];
 
 export default function Projects() {

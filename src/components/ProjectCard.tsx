@@ -8,6 +8,7 @@ interface Project {
     tags: string[];
     link?: string;
     github?: string;
+    image?: string;
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -96,8 +97,9 @@ export default function ProjectCard({ project }: { project: Project }) {
         >
             <div
                 ref={innerRef}
-                className="relative w-full h-full p-8 md:p-12 overflow-hidden rounded-[2rem] bg-[#1a1a1c]/80 border border-white/5 flex flex-col justify-end min-h-[420px]"
+                className="relative w-full h-full p-8 md:p-12 overflow-hidden rounded-[2rem] border border-white/5 flex flex-col justify-end min-h-[420px]"
                 style={{
+                    background: project.image ? "transparent" : "#1a1a1c",
                     transform: "rotateX(0deg) rotateY(0deg)",
                     transformStyle: "preserve-3d",
                     boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)",
@@ -105,6 +107,16 @@ export default function ProjectCard({ project }: { project: Project }) {
                     willChange: "transform",
                 }}
             >
+                {/* Background image with dark gradient overlay */}
+                {project.image && (
+                    <>
+                        <div
+                            className="absolute inset-0 bg-cover bg-top bg-no-repeat transition-transform duration-700 group-hover:scale-105"
+                            style={{ backgroundImage: `url(${project.image})` }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+                    </>
+                )}
                 {/* Magnetic Sheen Layer */}
                 <div
                     ref={sheenRef}
