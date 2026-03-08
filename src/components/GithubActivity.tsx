@@ -4,8 +4,16 @@ import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
+const GITHUB_USERNAME = "vansh9793693385-source";
+
+interface GitHubStats {
+    commits: number;
+    repos: number;
+    daysActive: number;
+}
+
 // Animated stat counter
-function StatCounter({ value, label, color }: { value: number; label: string; color: string }) {
+function StatCounter({ value, label, color, loading }: { value: number; label: string; color: string; loading: boolean }) {
     const [count, setCount] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
     const [inView, setInView] = useState(false);
@@ -17,20 +25,26 @@ function StatCounter({ value, label, color }: { value: number; label: string; co
     }, []);
 
     useEffect(() => {
-        if (!inView) return;
+        if (!inView || loading || value === 0) return;
         let start = 0;
-        const step = Math.ceil(value / 60);
+        const step = Math.max(1, Math.ceil(value / 60));
         const timer = setInterval(() => {
             start += step;
             if (start >= value) { setCount(value); clearInterval(timer); }
             else setCount(start);
         }, 20);
         return () => clearInterval(timer);
-    }, [inView, value]);
+    }, [inView, value, loading]);
 
     return (
-        <div ref={ref} className="flex flex-col items-center gap-1">
-            <span className="text-3xl md:text-4xl font-bold font-mono tabular-nums" style={{ color }}>{count}+</span>
+        <div ref={ref} className="flex flex-col items-center gap-1 min-w-[80px]">
+            {loading ? (
+                <div className="h-10 w-16 rounded-lg bg-white/5 animate-pulse" />
+            ) : (
+                <span className="text-3xl md:text-4xl font-bold font-mono tabular-nums" style={{ color }}>
+                    {count.toLocaleString()}+
+                </span>
+            )}
             <span className="text-xs font-mono tracking-widest text-white/40 uppercase">{label}</span>
         </div>
     );
@@ -38,8 +52,36 @@ function StatCounter({ value, label, color }: { value: number; label: string; co
 
 export default function GithubActivity() {
     const [mounted, setMounted] = useState(false);
+    const [stats, setStats] = useState<GitHubStats>({ commits: 0, repos: 0, daysActive: 0 });
+    const [statsLoading, setStatsLoading] = useState(true);
 
-    useEffect(() => { setMounted(true); }, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Fetch real GitHub stats from our cached API route (updates daily via ISR)
+    useEffect(() => {
+        if (!mounted) return;
+
+        async function fetchStats() {
+            try {
+                const res = await fetch("/api/github-stats");
+                const data = await res.json();
+                setStats({
+                    commits: data.commits ?? 0,
+                    repos: data.repos ?? 0,
+                    daysActive: data.daysActive ?? 0,
+                });
+            } catch (err) {
+                console.error("Failed to fetch GitHub stats:", err);
+                setStats({ commits: 0, repos: 0, daysActive: 0 });
+            } finally {
+                setStatsLoading(false);
+            }
+        }
+
+        fetchStats();
+    }, [mounted]);
 
     const explicitTheme = {
         light: ['#1a1a1a', '#00bfff40', '#00bfff80', '#00bfffc0', '#00ff88'],
@@ -94,7 +136,7 @@ export default function GithubActivity() {
                     className="flex flex-col items-center text-center mb-12"
                 >
                     <a
-                        href="https://github.com/vansh9793693385-source"
+                        href={`https://github.com/${GITHUB_USERNAME}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/5 bg-white/[0.02] mb-6 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-300 group/badge"
@@ -105,16 +147,16 @@ export default function GithubActivity() {
                             </svg>
                         </motion.div>
                         <span className="text-xs font-mono tracking-widest text-white/50 uppercase group-hover/badge:text-white/80 transition-colors duration-300">Open Source</span>
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/30 group-hover/badge:text-white/60 translate-x-0 group-hover/badge:translate-x-0.5 transition-all duration-300"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white/30 group-hover/badge:text-white/60 transition-all duration-300"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                     </a>
 
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.1] relative z-10">
                         Code <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">Activity.</span>
                     </h2>
-                    <p className="text-white/40 font-mono text-xs mt-4 tracking-widest uppercase">// Commit history & open-source contributions</p>
+                    <p className="text-white/40 font-mono text-xs mt-4 tracking-widest uppercase">// Real-time commit history &amp; contributions</p>
                 </motion.div>
 
-                {/* Animated Stats Row */}
+                {/* Real-Time Stats Row */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -122,11 +164,11 @@ export default function GithubActivity() {
                     transition={{ duration: 0.7, delay: 0.1 }}
                     className="flex items-center gap-10 md:gap-20 mb-10"
                 >
-                    <StatCounter value={300} label="Commits" color="#00bfff" />
+                    <StatCounter value={stats.commits} label="Commits (Last Year)" color="#00bfff" loading={statsLoading} />
                     <div className="w-[1px] h-10 bg-white/10" />
-                    <StatCounter value={12} label="Repositories" color="#00ff88" />
+                    <StatCounter value={stats.repos} label="Public Repos" color="#00ff88" loading={statsLoading} />
                     <div className="w-[1px] h-10 bg-white/10" />
-                    <StatCounter value={365} label="Days Active" color="#884dff" />
+                    <StatCounter value={stats.daysActive} label="Days Active" color="#884dff" loading={statsLoading} />
                 </motion.div>
 
                 {/* Calendar Heatmap */}
@@ -149,7 +191,7 @@ export default function GithubActivity() {
                         <div className="min-w-fit">
                             {mounted ? (
                                 <GitHubCalendar
-                                    username="vansh9793693385-source"
+                                    username={GITHUB_USERNAME}
                                     colorScheme="dark"
                                     theme={explicitTheme}
                                     fontSize={14}
