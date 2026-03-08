@@ -445,7 +445,7 @@ export default function Contact() {
                                 <SocialIcon href="https://github.com/vansh9793693385" icon="github" />
                                 <SocialIcon href="https://www.linkedin.com/in/vaibhav-yadav-80b891330" icon="linkedin" />
                                 <SocialIcon href="https://twitter.com/vanshh_00" icon="twitter" />
-                                <SocialIcon href="https://hackerone.com/vansh9793693385" icon="hackerone" />
+
                             </div>
                         </div>
 
