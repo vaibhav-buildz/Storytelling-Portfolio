@@ -22,8 +22,6 @@ export default function Navbar() {
     const { scrollY } = useScroll();
     const pillY = useTransform(scrollY, [0, 80], [0, -4]);
     const pillScale = useTransform(scrollY, [0, 120], [1, 0.97]);
-    const badgeOpacity = useTransform(scrollY, [0, 60], [1, 0]);
-    const badgeX = useTransform(scrollY, [0, 80], [0, -12]);
     const pillOpacity = useTransform(scrollY, [0, 30], [0.7, 1]);
 
     useEffect(() => {
