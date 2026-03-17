@@ -8,7 +8,7 @@ const NAV_LINKS = [
     { label: "About", id: "about", color: "#00bfff" },
     { label: "Skills", id: "skills", color: "#00ff88" },
     { label: "Work", id: "featured-creations", color: "#4dff88" },
-    { label: "Code", id: "github", color: "#884dff", externalHref: "https://github.com/vansh9793693385-source" },
+    { label: "Code", id: "github", color: "#884dff", externalHref: "https://github.com/vaibhav-buildz" },
     { label: "Certs", id: "certs", color: "#ffcb4d" },
     { label: "Contact", id: "contact", color: "#00bfff" },
 ];

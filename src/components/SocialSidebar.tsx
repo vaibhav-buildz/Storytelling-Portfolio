@@ -18,7 +18,7 @@ export default function SocialSidebar() {
         >
             {/* GitHub */}
             <a
-                href="https://www.github.com/vansh9793693385-source"
+                href="https://www.github.com/vaibhav-buildz"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center w-[36px] h-[36px] rounded-full transition-all duration-200 ease-out"

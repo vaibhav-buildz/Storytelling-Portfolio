@@ -9,7 +9,7 @@ const projects = [
         description: "A cinematic, scroll-reactive 3D portfolio with a custom image sequence engine, immersive boot animations, and interactive particle systems — built entirely from scratch.",
         tags: ["Next.js", "Three.js", "Framer Motion", "Canvas API"],
         link: "https://my-storytelling-portfolio.vercel.app/",
-        github: "https://github.com/vansh9793693385-source/New-Portfolio",
+        github: "https://github.com/vaibhav-buildz/Storytelling-Portfolio",
         image: "/project-storytelling-portfolio.png",
     },
 ];

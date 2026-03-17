@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const GITHUB_USERNAME = "vansh9793693385-source";
+const GITHUB_USERNAME = "vaibhav-buildz";
 
 // Cache and revalidate once per day (86400 seconds)
 export const revalidate = 86400;

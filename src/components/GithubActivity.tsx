@@ -4,7 +4,7 @@ import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-const GITHUB_USERNAME = "vansh9793693385-source";
+const GITHUB_USERNAME = "vaibhav-buildz";
 
 interface GitHubStats {
     commits: number;
