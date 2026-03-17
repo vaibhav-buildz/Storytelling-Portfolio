@@ -12,6 +12,14 @@ const projects = [
         github: "https://github.com/vaibhav-buildz/Storytelling-Portfolio",
         image: "/project-storytelling-portfolio.png",
     },
+    {
+        title: "Atrangi Portfolio",
+        description: "A cinematic interactive 3D portfolio featuring a pirate-themed journey map, immersive animations, and a simulated terminal interface.",
+        tags: ["HTML5", "CSS3", "JavaScript", "Three.js"],
+        link: "https://atrangi-portfolio.vercel.app/",
+        github: "https://github.com/vaibhav-buildz/atrangi-portfolio",
+        image: "/project-atrangi-portfolio.png",
+    },
 ];
 
 export default function Projects() {
