@@ -10,7 +10,7 @@ const projects = [
         tags: ["Next.js", "Three.js", "Framer Motion", "Canvas API"],
         link: "https://my-storytelling-portfolio.vercel.app/",
         github: "https://github.com/vaibhav-buildz/Storytelling-Portfolio",
-        image: "/project-storytelling-portfolio.png",
+        image: "/project-storytelling-hero.png",
     },
     {
         title: "Atrangi Portfolio",
@@ -18,7 +18,7 @@ const projects = [
         tags: ["HTML5", "CSS3", "JavaScript", "Three.js"],
         link: "https://atrangi-portfolio.vercel.app/",
         github: "https://github.com/vaibhav-buildz/atrangi-portfolio",
-        image: "/project-atrangi-portfolio-new.png",
+        image: "/project-atrangi-hero.png",
     },
     {
         title: "3D Portfolio",
@@ -26,7 +26,7 @@ const projects = [
         tags: ["Next.js", "Three.js", "Spline", "GSAP"],
         link: "https://vaibhavyadav.com",
         github: "https://github.com/vaibhav-buildz/3D-Portfolio",
-        image: "/project-3d-portfolio.png",
+        image: "/project-3d-hero.png",
     },
 ];
 
