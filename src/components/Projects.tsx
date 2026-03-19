@@ -20,6 +20,14 @@ const projects = [
         github: "https://github.com/vaibhav-buildz/atrangi-portfolio",
         image: "/project-atrangi-portfolio-new.png",
     },
+    {
+        title: "3D Portfolio",
+        description: "A high-performance, immersive 3D portfolio powered by Spline, GSAP, and Three.js. Featuring complex 3D scenes, interactive components, and seamless animations for a premium experience.",
+        tags: ["Next.js", "Three.js", "Spline", "GSAP"],
+        link: "https://vaibhavyadav.com",
+        github: "https://github.com/vaibhav-buildz/3D-Portfolio",
+        image: "/project-3d-portfolio.png",
+    },
 ];
 
 export default function Projects() {
