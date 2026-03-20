@@ -26,7 +26,7 @@ const projects = [
         tags: ["Next.js", "Three.js", "Spline", "GSAP"],
         link: "https://vaibhavyadav.com",
         github: "https://github.com/vaibhav-buildz/3D-Portfolio",
-        image: "/project-3d-hero.png",
+        image: "/project-3d-custom.png",
     },
 ];
 
